@@ -23,7 +23,7 @@ export class MoodComponent implements OnInit {
     const user = this.auth.getCurrentUser();
     if (!user) return;
 
-    this.userId = user.id;
+    this.userId = user.uid;
     this.history = this.load();
 
     const todayEntry = this.history.find(h => h.date === this.today);

@@ -1,108 +1,107 @@
 import { Injectable, PLATFORM_ID, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-export interface User {
-  id: string;
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  User as FirebaseUser,
+  onAuthStateChanged
+} from 'firebase/auth';
+
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../../firebase';
+
+export interface UserProfile {
+  uid: string;
   name: string;
   email: string;
-  password: string;
   theme: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private readonly USERS_KEY = 'users';
-  private readonly CURRENT_KEY = 'currentUser';
   private readonly DEFAULT_THEME = 'blue';
 
   private platformId = inject(PLATFORM_ID);
   private isBrowser = isPlatformBrowser(this.platformId);
 
   loggedIn = signal<boolean>(false);
+  userProfile = signal<UserProfile | null>(null);
 
   constructor() {
     if (!this.isBrowser) return;
 
-    const user = this.getCurrentUser();
-    this.loggedIn.set(!!user);
-
-    if (user?.theme) {
-      this.setTheme(user.theme);
-    } else {
-      this.setTheme(this.DEFAULT_THEME);
-    }
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        this.loggedIn.set(true);
+        await this.loadUserProfile(user);
+      } else {
+        this.loggedIn.set(false);
+        this.userProfile.set(null);
+        this.setTheme(this.DEFAULT_THEME);
+      }
+    });
   }
 
-  register(user: User): void {
-    if (!this.isBrowser) return;
+  async register(
+    name: string,
+    email: string,
+    password: string,
+    theme: string
+  ): Promise<void> {
 
-    const users = this.getUsers();
-    users.push(user);
-    localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
-  }
-
-  login(email: string, password: string): User | null {
-    if (!this.isBrowser) return null;
-
-    const user = this.getUsers().find(
-      u => u.email === email && u.password === password
+    const cred = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
     );
 
-    if (!user) return null;
+    const profile: UserProfile = {
+      uid: cred.user.uid,
+      name,
+      email,
+      theme
+    };
 
-    localStorage.setItem(this.CURRENT_KEY, JSON.stringify(user));
-    this.loggedIn.set(true);
-
-    this.setTheme(user.theme || this.DEFAULT_THEME);
-
-    return user;
+    await setDoc(doc(db, 'users', cred.user.uid), profile);
+    this.userProfile.set(profile);
+    this.setTheme(theme);
   }
 
-  logout(): void {
-    if (!this.isBrowser) return;
+  async login(email: string, password: string): Promise<void> {
+    const cred = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
 
-    localStorage.removeItem(this.CURRENT_KEY);
+    await this.loadUserProfile(cred.user);
+  }
+
+  async logout(): Promise<void> {
+    await signOut(auth);
+    this.userProfile.set(null);
     this.loggedIn.set(false);
-
     this.setTheme(this.DEFAULT_THEME);
+  }
+
+  private async loadUserProfile(user: FirebaseUser): Promise<void> {
+    const snap = await getDoc(doc(db, 'users', user.uid));
+    if (!snap.exists()) return;
+
+    const profile = snap.data() as UserProfile;
+    this.userProfile.set(profile);
+    this.setTheme(profile.theme || this.DEFAULT_THEME);
+  }
+
+  getCurrentUser(): UserProfile | null {
+    return this.userProfile();
   }
 
   isLoggedIn(): boolean {
     return this.loggedIn();
-  }
-
-  getCurrentUser(): User | null {
-    if (!this.isBrowser) return null;
-
-    return JSON.parse(
-      localStorage.getItem(this.CURRENT_KEY) || 'null'
-    );
-  }
-
-  private getUsers(): User[] {
-    if (!this.isBrowser) return [];
-
-    return JSON.parse(
-      localStorage.getItem(this.USERS_KEY) || '[]'
-    );
-  }
-
-  saveModules(userId: string, modules: string[]): void {
-    if (!this.isBrowser) return;
-
-    localStorage.setItem(
-      `modules_${userId}`,
-      JSON.stringify(modules)
-    );
-  }
-
-  getModules(userId: string): string[] {
-    if (!this.isBrowser) return [];
-
-    return JSON.parse(
-      localStorage.getItem(`modules_${userId}`) || '[]'
-    );
   }
 
   setTheme(theme: string): void {
@@ -115,5 +114,26 @@ export class AuthService {
     );
 
     document.body.classList.add(`${theme}-theme`);
+
+    const user = this.userProfile();
+    if (user) {
+      this.userProfile.set({ ...user, theme });
+    }
+  }
+
+  saveModules(userId: string, modules: string[]): void {
+    localStorage.setItem(`modules_${userId}`, JSON.stringify(modules));
+  }
+
+  getModules(userId: string): string[] {
+    return JSON.parse(localStorage.getItem(`modules_${userId}`) || '[]');
+  }
+
+  saveModuleOrder(userId: string, order: string[]): void {
+    localStorage.setItem(`module_order_${userId}`, JSON.stringify(order));
+  }
+
+  getModuleOrder(userId: string): string[] {
+    return JSON.parse(localStorage.getItem(`module_order_${userId}`) || '[]');
   }
 }

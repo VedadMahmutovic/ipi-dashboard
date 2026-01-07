@@ -5,7 +5,6 @@
       <h1>Personal Life Dashboard</h1>
       <p>Dobrodošao, {{ user?.name }}</p>
     </div>
-
   </header>
 
   <section class="module-grid">
@@ -18,49 +17,30 @@
     </div>
   </section>
 
-  <section class="windows">
+  <section class="windows"
+           cdkDropList
+           (cdkDropListDropped)="dropWindow($event)">
 
-    <div class="window" *ngIf="activeModules.includes('habit')">
-      <div class="window-header">Habit Tracker</div>
-      <div class="window-body">
-        <app-habit></app-habit>
-      </div>
-    </div>
+    <div class="window"
+         *ngFor="let id of activeModules"
+         cdkDrag>
 
-    <div class="window" *ngIf="activeModules.includes('mood')">
-      <div class="window-header">Mood Tracker</div>
-      <div class="window-body">
-        <app-mood></app-mood>
+      <div class="window-header" cdkDragHandle>
+        {{ getTitle(id) }}
+        <span class="drag-hint">⠿</span>
       </div>
-    </div>
 
-    <div class="window" *ngIf="activeModules.includes('sleep')">
-      <div class="window-header">Sleep Tracker</div>
       <div class="window-body">
-        <app-sleep></app-sleep>
+        <app-habit *ngIf="id === 'habit'"></app-habit>
+        <app-mood *ngIf="id === 'mood'"></app-mood>
+        <app-sleep *ngIf="id === 'sleep'"></app-sleep>
+        <app-tasks *ngIf="id === 'tasks'"></app-tasks>
+        <app-water *ngIf="id === 'water'"></app-water>
+        <app-reflection *ngIf="id === 'reflection'"></app-reflection>
       </div>
-    </div>
 
-    <div class="window" *ngIf="activeModules.includes('tasks')">
-      <div class="window-header">Tasks</div>
-      <div class="window-body">
-        <app-tasks></app-tasks>
-      </div>
-    </div>
-
-    <div class="window" *ngIf="activeModules.includes('water')">
-      <div class="window-header">Water Tracker</div>
-      <div class="window-body">
-        <app-water></app-water>
-      </div>
-    </div>
-
-    <div class="window" *ngIf="activeModules.includes('reflection')">
-      <div class="window-header">Reflection</div>
-      <div class="window-body">
-        <app-reflection></app-reflection>
-      </div>
     </div>
 
   </section>
+
 </div>

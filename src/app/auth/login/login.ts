@@ -17,6 +17,7 @@ import { AuthService } from '../../core/auth';
   styleUrl: './login.scss'
 })
 export class LoginComponent implements OnInit {
+
   form!: FormGroup;
   error = '';
 
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
@@ -37,20 +38,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  submit(): void {
+  async submit(): Promise<void> {
     if (this.form.invalid) return;
 
-    const user = this.auth.login(
-      this.form.value.email,
-      this.form.value.password
-    );
+    try {
+      await this.auth.login(
+        this.form.value.email,
+        this.form.value.password
+      );
 
-    if (!user) {
+      this.router.navigate(['/dashboard']);
+
+    } catch {
       this.error = 'Pogrešan email ili password';
-      return;
     }
-
-    document.body.className = `${user.theme}-theme`;
-    this.router.navigate(['/dashboard']);
   }
 }

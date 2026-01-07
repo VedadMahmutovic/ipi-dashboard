@@ -17,8 +17,9 @@ import { AuthService } from '../../core/auth';
   styleUrl: './register.scss'
 })
 export class RegisterComponent implements OnInit {
-  form!: FormGroup;
 
+  form!: FormGroup;
+  error = '';
   themes = ['blue', 'spring', 'summer', 'autumn', 'winter'];
 
   constructor(
@@ -30,8 +31,8 @@ export class RegisterComponent implements OnInit {
     this.form = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-      theme: ['blue'] 
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      theme: ['blue']
     });
   }
 
@@ -47,18 +48,49 @@ export class RegisterComponent implements OnInit {
     this.themes.forEach(t =>
       this.renderer.removeClass(document.body, `${t}-theme`)
     );
-
     this.renderer.addClass(document.body, `${theme}-theme`);
   }
 
-  submit(): void {
-    if (this.form.invalid) return;
+  async submit(): Promise<void> {
+    this.error = '';
 
-    this.auth.register({
-      id: crypto.randomUUID(),
-      ...this.form.value
-    });
+    if (this.form.invalid) {
+      this.error = 'Molimo popunite sva polja ispravno.';
+      return;
+    }
 
-    this.router.navigate(['/login']);
+    try {
+      await this.auth.register(
+        this.form.value.name,
+        this.form.value.email,
+        this.form.value.password,
+        this.form.value.theme
+      );
+
+      this.router.navigate(['/login']);
+
+    } catch (err: any) {
+
+      switch (err.code) {
+        case 'auth/email-already-in-use':
+          this.error = 'Ovaj email je već registrovan.';
+          break;
+
+        case 'auth/invalid-email':
+          this.error = 'Email adresa nije ispravna.';
+          break;
+
+        case 'auth/weak-password':
+          this.error = 'Password mora imati najmanje 6 karaktera.';
+          break;
+
+        case 'auth/network-request-failed':
+          this.error = 'Problem s internet konekcijom.';
+          break;
+
+        default:
+          this.error = 'Došlo je do greške. Pokušajte ponovo.';
+      }
+    }
   }
 }

@@ -2,7 +2,9 @@
   <div class="header-container">
 
     <div class="header-left">
-      <span class="logo" routerLink="/">IPI Akademija</span>
+      <a class="logo" routerLink="/">
+        <img src="assets/logo_ipi.png" alt="IPI Akademija logo">
+      </a>
     </div>
 
     <div class="header-right">
@@ -18,15 +20,14 @@
       </ng-container>
 
       <ng-container *ngIf="auth.loggedIn()">
-        <a routerLink="/dashboard">Dashboard</a>
+        <a routerLink="/courses">Programi</a>
+        <a routerLink="/schedule">Raspored</a>
         <a routerLink="/fun-zone">Fun Zone</a>
         <a routerLink="/statistics">Statistika</a>
+        <a routerLink="/dashboard">Dashboard</a>
+        <a routerLink="/contact">Kontakt</a>
 
-        <button class="btn-logout" (click)="logout()">
-          Logout
-        </button>
         <div class="theme-dropdown">
-
           <button class="theme-trigger"
                   type="button"
                   (click)="toggleThemeMenu($event)">
@@ -34,15 +35,17 @@
           </button>
 
           <div class="theme-menu" *ngIf="themeMenuOpen">
-            <button (click)="changeTheme('blue')">Default (Blue)</button>
-            <button (click)="changeTheme('spring')">🌱 Proljeće</button>
-            <button (click)="changeTheme('summer')">☀️ Ljeto</button>
-            <button (click)="changeTheme('autumn')">🍂 Jesen</button>
-            <button (click)="changeTheme('winter')">❄️ Zima</button>
+            <button (click)="changeTheme('blue')">Default</button>
+            <button (click)="changeTheme('spring')">Proljeće</button>
+            <button (click)="changeTheme('summer')">Ljeto</button>
+            <button (click)="changeTheme('autumn')">Jesen</button>
+            <button (click)="changeTheme('winter')">Zima</button>
           </div>
-
         </div>
 
+        <button class="btn-logout" (click)="logout()">
+          Logout
+        </button>
       </ng-container>
 
     </div>

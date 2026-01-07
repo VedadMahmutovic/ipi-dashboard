@@ -32,7 +32,7 @@ export class ReflectionComponent implements OnInit {
     const user = this.auth.getCurrentUser();
     if (!user) return;
 
-    this.userId = user.id;
+    this.userId = user.uid;
     this.entries = this.load();
 
     this.selectDate(this.formatDate(this.today));

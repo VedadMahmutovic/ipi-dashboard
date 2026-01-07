@@ -8,7 +8,7 @@ export class HabitService {
   constructor(private auth: AuthService) { }
 
   private get userId(): string {
-    return this.auth.getCurrentUser()?.id ?? '';
+    return this.auth.getCurrentUser()?.uid ?? '';
   }
 
   private today(): string {

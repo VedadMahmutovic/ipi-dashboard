@@ -57,7 +57,7 @@ export class StatisticsComponent implements OnInit {
     const user = this.auth.getCurrentUser();
     if (!user) return;
 
-    this.userId = user.id;
+    this.userId = user.uid;
     this.loadSleep();
     this.loadMood();
     this.loadTasks();

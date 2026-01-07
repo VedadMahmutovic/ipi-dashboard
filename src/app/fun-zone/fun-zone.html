@@ -29,19 +29,19 @@
     </button>
   </div>
 
-  <div class="content" *ngIf="active">
+  <div class="content">
 
-    <app-bingo *ngIf="active === 'bingo'"></app-bingo>
+    <app-bingo [hidden]="active !== 'bingo'"></app-bingo>
 
-    <app-kanban *ngIf="active === 'kanban'"></app-kanban>
+    <app-kanban [hidden]="active !== 'kanban'"></app-kanban>
 
-    <app-quiz *ngIf="active === 'quiz'"></app-quiz>
+    <app-quiz [hidden]="active !== 'quiz'"></app-quiz>
 
-    <app-vision-board *ngIf="active === 'vision'"
+    <app-vision-board [hidden]="active !== 'vision'"
                       ngSkipHydration>
     </app-vision-board>
 
-    <app-whiteboard *ngIf="active === 'whiteboard'"></app-whiteboard>
+    <app-whiteboard [hidden]="active !== 'whiteboard'"></app-whiteboard>
 
   </div>
 
