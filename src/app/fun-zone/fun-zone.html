@@ -1,0 +1,48 @@
+<section class="fun-zone">
+
+  <h1>Student Fun Zone</h1>
+
+  <div class="tabs">
+    <button [class.active]="active === 'bingo'"
+            (click)="active = 'bingo'">
+      Bingo
+    </button>
+
+    <button [class.active]="active === 'kanban'"
+            (click)="active = 'kanban'">
+      Kanban
+    </button>
+
+    <button [class.active]="active === 'quiz'"
+            (click)="active = 'quiz'">
+      Quiz
+    </button>
+
+    <button [class.active]="active === 'vision'"
+            (click)="active = 'vision'">
+      Vision Board
+    </button>
+
+    <button [class.active]="active === 'whiteboard'"
+            (click)="active = 'whiteboard'">
+      Whiteboard
+    </button>
+  </div>
+
+  <div class="content" *ngIf="active">
+
+    <app-bingo *ngIf="active === 'bingo'"></app-bingo>
+
+    <app-kanban *ngIf="active === 'kanban'"></app-kanban>
+
+    <app-quiz *ngIf="active === 'quiz'"></app-quiz>
+
+    <app-vision-board *ngIf="active === 'vision'"
+                      ngSkipHydration>
+    </app-vision-board>
+
+    <app-whiteboard *ngIf="active === 'whiteboard'"></app-whiteboard>
+
+  </div>
+
+</section>

@@ -1,0 +1,43 @@
+<div class="water">
+
+  <div class="water-header">
+    <div>
+      <h2>Water</h2>
+      <p class="details">
+        {{ totalMl }} ml / {{ recommended }} ml
+        ({{ totalLiters }} L)
+      </p>
+    </div>
+
+    <span class="count">
+      {{ glasses }} / {{ goal }}
+    </span>
+  </div>
+
+  <div class="glasses">
+    <div class="glass"
+         *ngFor="let g of [].constructor(goal); let i = index"
+         [class.filled]="i < glasses">
+      💧
+    </div>
+  </div>
+
+  <div class="controls">
+    <button (click)="remove()">−</button>
+    <button (click)="add()">+</button>
+  </div>
+
+  <div class="wave-bar">
+    <div class="wave"
+         [style.width.%]="progress"></div>
+  </div>
+
+  <p class="hint" *ngIf="glasses < goal">
+    💧 Keep drinking water
+  </p>
+
+  <p class="success" *ngIf="glasses >= goal">
+    ✅ Daily goal reached!
+  </p>
+
+</div>

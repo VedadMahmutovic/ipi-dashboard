@@ -1,0 +1,41 @@
+<div class="reflection">
+
+  <div class="date-bar" (click)="toggleCalendar()">
+    <span class="date">
+      {{ selectedDate }}
+    </span>
+
+    <span class="dot"
+          [style.background]="hasEntry(selectedDate)?.color || '#ccc'"></span>
+  </div>
+
+  <div class="calendar" *ngIf="showCalendar">
+
+    <div class="weekday" *ngFor="let w of ['Mo','Tu','We','Th','Fr','Sa','Su']">
+      {{ w }}
+    </div>
+
+    <div class="day"
+         *ngFor="let d of calendarDays"
+         [class.empty]="!d"
+         [class.active]="d && formatDate(d) === selectedDate"
+         [style.background]="d ? (hasEntry(formatDate(d))?.color || '#eee') : 'transparent'"
+         (click)="d && selectDate(formatDate(d)); showCalendar = false">
+      {{ d?.getDate() }}
+    </div>
+  </div>
+
+
+  <textarea placeholder="How was your day?"
+            [(ngModel)]="text">
+  </textarea>
+
+  <div class="controls">
+    <input type="color" [(ngModel)]="color" />
+
+    <span class="saved" *ngIf="saved">Sačuvano ✔</span>
+
+    <button (click)="save()">Save</button>
+  </div>
+
+</div>

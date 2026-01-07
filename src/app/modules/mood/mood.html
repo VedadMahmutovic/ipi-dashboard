@@ -1,0 +1,35 @@
+<div class="mood">
+
+  <div class="mood-header">
+    <h2>Mood</h2>
+    <span class="date">Danas</span>
+  </div>
+
+  <div class="emoji-wrapper" [class]="'mood-' + mood">
+    <div class="emoji">{{ emoji() }}</div>
+    <div class="mood-label">
+      {{
+        mood === 1 ? 'Loše' :
+        mood === 2 ? 'Nije baš' :
+        mood === 3 ? 'Neutralno' :
+        mood === 4 ? 'Dobro' :
+        'Odlično'
+      }}
+    </div>
+  </div>
+
+  <input type="range"
+         min="1"
+         max="5"
+         [(ngModel)]="mood"
+         (change)="save()" />
+
+  <div class="labels">
+    <span>😢</span>
+    <span>🙁</span>
+    <span>😐</span>
+    <span>🙂</span>
+    <span>😁</span>
+  </div>
+
+</div>

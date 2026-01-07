@@ -1,0 +1,28 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+
+    <h2>Registracija</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <input placeholder="Ime" formControlName="name">
+      <input placeholder="Email" formControlName="email">
+      <input type="password" placeholder="Password" formControlName="password">
+
+      <select formControlName="theme">
+        <option value="blue">Plava (Default)</option>
+        <option value="spring">Proljeće</option>
+        <option value="summer">Ljeto</option>
+        <option value="autumn">Jesen</option>
+        <option value="winter">Zima</option>
+      </select>
+
+      <button type="submit">Registruj se</button>
+    </form>
+
+    <p class="switch">
+      Već imaš račun?
+      <a routerLink="/login">Prijavi se</a>
+    </p>
+
+  </div>
+</div>

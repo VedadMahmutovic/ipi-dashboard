@@ -1,0 +1,21 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+
+    <h2>Prijava</h2>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <input placeholder="Email" formControlName="email">
+      <input type="password" placeholder="Password" formControlName="password">
+
+      <button type="submit">Login</button>
+    </form>
+
+    <p class="error" *ngIf="error">{{ error }}</p>
+
+    <p class="switch">
+      Nemaš račun?
+      <a routerLink="/register">Registruj se</a>
+    </p>
+
+  </div>
+</div>

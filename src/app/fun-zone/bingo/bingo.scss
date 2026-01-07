@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+.container {
+  width: 80%;
+  margin: 40px auto;
+  text-align: center;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+
+.napomena {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 25px;
+  background-color: #fff;
+}
+
+td {
+  border: 2px solid #333;
+  padding: 15px;
+  height: 80px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+
+.free {
+  font-weight: 600;
+  background-color: #e8f0ff;
+}
+
+.pdf-btn {
+  padding: 12px 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  background: var(--vbb-bg);
+  color: white;
+  cursor: pointer;
+}
+
+.pdf-btn:hover {
+  background-color: #0056b3;
+}

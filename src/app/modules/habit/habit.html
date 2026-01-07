@@ -1,0 +1,47 @@
+<div class="habit">
+
+  <div class="habit-header">
+    <div>
+      <h2>Habit Tracker</h2>
+      <p class="summary">
+        {{ completedCount }} / {{ habits.length }} navika završeno danas
+      </p>
+    </div>
+
+    <span class="percent">{{ progressPercent }}%</span>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress"
+         [style.width.%]="progressPercent"></div>
+  </div>
+
+  <div class="add-habit">
+    <input type="text"
+           placeholder="Nova navika"
+           [(ngModel)]="name" />
+
+    <input type="color" [(ngModel)]="color" />
+
+    <button (click)="add()">Dodaj</button>
+  </div>
+
+  <ul class="habit-list">
+    <li *ngFor="let h of habits"
+        [class.done]="isDone(h.id)"
+        [style.--accent]="h.color">
+      <label class="habit-item">
+        <input type="checkbox"
+               [checked]="isDone(h.id)"
+               (change)="toggle(h.id)" />
+        <span class="name" title="{{ h.name }}">
+          {{ h.name }}
+        </span>
+      </label>
+
+      <span class="check" *ngIf="isDone(h.id)">✔</span>
+      <button class="delete" (click)="remove(h.id)">✖</button>
+    </li>
+  </ul>
+
+</div>

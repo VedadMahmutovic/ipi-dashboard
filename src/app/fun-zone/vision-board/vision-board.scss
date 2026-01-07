@@ -1,0 +1,117 @@
+.vision-root {
+  height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+h1 {
+  margin-top: 15px;
+  color: #4b382a;
+}
+
+.toolbar {
+  padding: 10px 20px;
+  border-radius: 12px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  background: var(--vbb-bg);
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.board-wrapper {
+  width: 100%;
+  flex: 1;
+  display: block;
+}
+
+#board {
+  position: relative;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+  background: url("/assets/vision/pluto.png");
+  background-size: cover;
+  border-radius: 12px;
+  box-shadow: inset 0 4px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.note,
+.quote,
+.pinned-img {
+  position: absolute;
+  display: inline-block;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: move;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.note.color1 {
+  background: #fdfd96;
+}
+
+.note.color2 {
+  background: #ffb6b9;
+}
+
+.note.color3 {
+  background: #c6f1e7;
+}
+
+.note.color4 {
+  background: #f6d6ad;
+}
+
+.note.color5 {
+  background: #d4a5a5;
+}
+
+.note.color6 {
+  background: #b5ead7;
+}
+
+.note[contenteditable],
+.quote[contenteditable] {
+  outline: none;
+  min-width: 100px;
+  min-height: 60px;
+}
+
+.quote {
+  width: 200px;
+  background: #fff5e6;
+  font-style: italic;
+}
+
+.pinned-img img {
+  width: 120px;
+  border-radius: 8px;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 2px;
+  right: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.note:hover .delete-btn,
+.quote:hover .delete-btn,
+.pinned-img:hover .delete-btn {
+  opacity: 1;
+}

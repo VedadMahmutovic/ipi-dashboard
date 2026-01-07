@@ -1,0 +1,49 @@
+.whiteboard-root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.toolbar {
+  padding: 10px 15px;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+button {
+  background: var(--vbb-bg);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #3f314c;
+}
+
+canvas {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  touch-action: none;
+  max-width: 95%;
+  cursor: url('/assets/whiteboard/marker.png') 0 30, auto;
+}
+
+footer {
+  margin-top: 15px;
+  font-size: 13px;
+  color: #444;
+}

@@ -1,0 +1,113 @@
+.tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.counter {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.add-task {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.add-task input {
+  flex: 1;
+  padding: 0.6rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.add-task select {
+  padding: 0.6rem;
+  border-radius: 8px;
+}
+
+.add-task button {
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  background: purple;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.task-section h3 {
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+
+.task-card {
+  background: #f6f6f6;
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  cursor: grab;
+}
+
+.task-card.done {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+.task-card.low {
+  border-left: 4px solid #2ecc71;
+}
+
+.task-card.medium {
+  border-left: 4px solid #f1c40f;
+}
+
+.task-card.high {
+  border-left: 4px solid #e74c3c;
+}
+
+.priority {
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+.actions {
+  display: flex;
+  gap: 0.4rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.task-card:hover .actions {
+  opacity: 1;
+}
+
+.done-btn {
+  color: green;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.undo-btn {
+  color: orange;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.remove {
+  color: red;
+  background: none;
+  border: none;
+  cursor: pointer;
+}

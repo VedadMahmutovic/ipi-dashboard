@@ -1,0 +1,51 @@
+<nav class="header">
+  <div class="header-container">
+
+    <div class="header-left">
+      <span class="logo" routerLink="/">IPI Akademija</span>
+    </div>
+
+    <div class="header-right">
+
+      <ng-container *ngIf="!auth.loggedIn()">
+        <a routerLink="/courses">Programi</a>
+        <a routerLink="/schedule">Raspored</a>
+        <a routerLink="/contact">Kontakt</a>
+
+        <a routerLink="/login" class="btn-primary">
+          Prijava / Upis
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="auth.loggedIn()">
+        <a routerLink="/dashboard">Dashboard</a>
+        <a routerLink="/fun-zone">Fun Zone</a>
+        <a routerLink="/statistics">Statistika</a>
+
+        <button class="btn-logout" (click)="logout()">
+          Logout
+        </button>
+        <div class="theme-dropdown">
+
+          <button class="theme-trigger"
+                  type="button"
+                  (click)="toggleThemeMenu($event)">
+            Tema ▾
+          </button>
+
+          <div class="theme-menu" *ngIf="themeMenuOpen">
+            <button (click)="changeTheme('blue')">Default (Blue)</button>
+            <button (click)="changeTheme('spring')">🌱 Proljeće</button>
+            <button (click)="changeTheme('summer')">☀️ Ljeto</button>
+            <button (click)="changeTheme('autumn')">🍂 Jesen</button>
+            <button (click)="changeTheme('winter')">❄️ Zima</button>
+          </div>
+
+        </div>
+
+      </ng-container>
+
+    </div>
+
+  </div>
+</nav>

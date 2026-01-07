@@ -1,0 +1,35 @@
+<div class="whiteboard-root">
+
+  <h1>Interaktivni Whiteboard</h1>
+
+  <div class="toolbar">
+    <label>Boja:</label>
+    <input type="color" [(ngModel)]="color">
+
+    <label>Četka:</label>
+    <input type="range" min="1" max="20" [(ngModel)]="brushSize">
+
+    <button (click)="toggleEraser()">
+      {{ isErasing ? 'Piši' : 'Briši' }}
+    </button>
+
+    <button (click)="clear()">Čista ploča</button>
+    <button (click)="save()">Snimi</button>
+  </div>
+
+  <canvas #canvas
+          width="900"
+          height="500"
+          (mousedown)="startDraw($event)"
+          (mouseup)="endDraw()"
+          (mousemove)="draw($event)"
+          (touchstart)="startDraw($event)"
+          (touchend)="endDraw()"
+          (touchmove)="draw($event)">
+  </canvas>
+
+  <footer>
+    Web programiranje 2025 © Internacionalna poslovno-informaciona akademija Tuzla
+  </footer>
+
+</div>

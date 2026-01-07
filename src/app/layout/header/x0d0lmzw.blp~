@@ -1,0 +1,33 @@
+<nav class="header">
+  <div class="header-container">
+
+    <div class="header-left">
+      <span class="logo" routerLink="/">IPI Akademija</span>
+    </div>
+
+    <div class="header-right">
+
+      <ng-container *ngIf="!auth.loggedIn()">
+        <a routerLink="/courses">Programi</a>
+        <a routerLink="/schedule">Raspored</a>
+        <a routerLink="/contact">Kontakt</a>
+
+        <a routerLink="/login" class="btn-primary">
+          Prijava / Upis
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="auth.loggedIn()">
+        <a routerLink="/dashboard">Dashboard</a>
+        <a routerLink="/fun-zone">Fun Zone</a>
+        <a routerLink="/statistics">Statistika</a>
+
+        <button class="btn-logout" (click)="logout()">
+          Logout
+        </button>
+      </ng-container>
+
+    </div>
+
+  </div>
+</nav>

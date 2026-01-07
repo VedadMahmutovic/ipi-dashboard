@@ -1,0 +1,122 @@
+<div #quizContent>
+
+  <h1>K V I Z</h1>
+  <p class="opis">
+    Dobrodošli u studentski kviz! Testirajte svoje znanje o HTML-u i osnovama weba.
+  </p>
+
+  <form class="kviz-forma">
+
+    <div class="question" [ngClass]="submitted ? results['q1'] : null">
+      <h3>1. Šta je skraćenica HTML?</h3>
+      <label><input type="radio" name="q1"> HyperText Markup Language</label>
+      <label><input type="radio" name="q1"> HighText Markdown Language</label>
+      <label><input type="radio" name="q1"> HyperText Makeup Language</label>
+      <p *ngIf="submitted && results['q1'] === 'wrong'" class="hint">
+        Tačan odgovor: <b>HyperText Markup Language</b>
+      </p>
+    </div>
+
+    <div class="question" [ngClass]="submitted ? results['q2'] : null">
+      <h3>2. Koje se oznake koriste za izradu popisa u HTML-u?</h3>
+      <label><input type="checkbox" name="q2"> &lt;ul&gt;</label>
+      <label><input type="checkbox" name="q2"> &lt;ol&gt;</label>
+      <label><input type="checkbox" name="q2"> &lt;li&gt;</label>
+      <label><input type="checkbox" name="q2"> &lt;br&gt;</label>
+      <p *ngIf="submitted && results['q2'] === 'wrong'" class="hint">
+        Tačni odgovori: <b>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</b>
+      </p>
+    </div>
+
+    <div class="question" [ngClass]="submitted ? results['q3'] : null">
+      <h3>3. Koja se oznaka koristi za umetanje slike?</h3>
+      <label><input type="radio" name="q3"> &lt;image&gt;</label>
+      <label><input type="radio" name="q3"> &lt;img&gt;</label>
+      <label><input type="radio" name="q3"> &lt;src&gt;</label>
+      <p *ngIf="submitted && results['q3'] === 'wrong'" class="hint">
+        Tačan odgovor: <b>&lt;img&gt;</b>
+      </p>
+    </div>
+
+    <div class="question" [ngClass]="submitted ? results['q4'] : null">
+      <h3>4. Koji od sljedećih su valjani HTML atributi?</h3>
+      <label><input type="checkbox" name="q4"> href</label>
+      <label><input type="checkbox" name="q4"> src</label>
+      <label><input type="checkbox" name="q4"> bold</label>
+      <label><input type="checkbox" name="q4"> alt</label>
+      <p *ngIf="submitted && results['q4'] === 'wrong'" class="hint">
+        Tačni odgovori: <b>href, src, alt</b>
+      </p>
+    </div>
+
+    <div class="question" [ngClass]="submitted ? results['q5'] : null">
+      <h3>5. Koji je ispravan način za stvaranje linkova u HTML-u?</h3>
+      <label><input type="radio" name="q5"> &lt;a url="example.com"&gt;</label>
+      <label><input type="radio" name="q5"> &lt;a href="example.com"&gt;</label>
+      <label><input type="radio" name="q5"> &lt;link&gt;</label>
+      <p *ngIf="submitted && results['q5'] === 'wrong'" class="hint">
+        Tačan odgovor: <b>&lt;a href="example.com"&gt;</b>
+      </p>
+    </div>
+
+    <div class="question" [ngClass]="submitted ? results['q6'] : null">
+      <h3>6. Koja HTML oznaka se koristi za najveći naslov?</h3>
+      <label><input type="radio" name="q6"> &lt;h6&gt;</label>
+      <label><input type="radio" name="q6"> &lt;h1&gt;</label>
+      <label><input type="radio" name="q6"> &lt;head&gt;</label>
+      <p *ngIf="submitted && results['q6'] === 'wrong'" class="hint">
+        Tačan odgovor: <b>&lt;h1&gt;</b>
+      </p>
+    </div>
+
+    <div class="question" [ngClass]="submitted ? results['q7'] : null">
+      <h3>7. Koje oznake su semantičke?</h3>
+      <label><input type="checkbox" name="q7"> &lt;header&gt;</label>
+      <label><input type="checkbox" name="q7"> &lt;footer&gt;</label>
+      <label><input type="checkbox" name="q7"> &lt;div&gt;</label>
+      <label><input type="checkbox" name="q7"> &lt;article&gt;</label>
+      <p *ngIf="submitted && results['q7'] === 'wrong'" class="hint">
+        Tačni odgovori: <b>&lt;header&gt;, &lt;footer&gt;, &lt;article&gt;</b>
+      </p>
+    </div>
+
+    <div class="question" [ngClass]="submitted ? results['q8'] : null">
+      <h3>8. Koja oznaka se koristi za unos teksta?</h3>
+      <label><input type="radio" name="q8"> &lt;input&gt;</label>
+      <label><input type="radio" name="q8"> &lt;text&gt;</label>
+      <label><input type="radio" name="q8"> &lt;textarea&gt;</label>
+      <p *ngIf="submitted && results['q8'] === 'wrong'" class="hint">
+        Tačan odgovor: <b>&lt;input&gt;</b>
+      </p>
+    </div>
+
+    <div class="question" [ngClass]="submitted ? results['q9'] : null">
+      <h3>9. Koje vrijednosti može imati atribut type kod inputa?</h3>
+      <label><input type="checkbox" name="q9"> text</label>
+      <label><input type="checkbox" name="q9"> password</label>
+      <label><input type="checkbox" name="q9"> number</label>
+      <label><input type="checkbox" name="q9"> colorize</label>
+      <p *ngIf="submitted && results['q9'] === 'wrong'" class="hint">
+        Tačni odgovori: <b>text, password, number</b>
+      </p>
+    </div>
+
+    <div class="question" [ngClass]="submitted ? results['q10'] : null">
+      <h3>10. Koja oznaka se koristi za linijski prijelom?</h3>
+      <label><input type="radio" name="q10"> &lt;br&gt;</label>
+      <label><input type="radio" name="q10"> &lt;hr&gt;</label>
+      <label><input type="radio" name="q10"> &lt;p&gt;</label>
+      <p *ngIf="submitted && results['q10'] === 'wrong'" class="hint">
+        Tačan odgovor: <b>&lt;br&gt;</b>
+      </p>
+    </div>
+
+    <button type="button" (click)="check()">Provjerite odgovore</button>
+    <button type="button" (click)="downloadPdf()">Preuzmi kao PDF</button>
+
+    <p *ngIf="submitted" class="rezultat">
+      Vaš rezultat: {{ score }} / 10
+    </p>
+
+  </form>
+</div>

@@ -1,0 +1,58 @@
+<div class="tasks">
+
+  <div class="tasks-header">
+    <h2>Tasks</h2>
+    <span class="counter">
+      {{ todo.length }} / {{ tasks.length }} remaining
+    </span>
+  </div>
+
+  <div class="add-task">
+    <input [(ngModel)]="newTask"
+           placeholder="What needs to be done?"
+           (keydown.enter)="add()" />
+
+    <select [(ngModel)]="priority">
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+
+    <button (click)="add()">Add</button>
+  </div>
+
+  <div class="task-section">
+    <h3>To do</h3>
+
+    <div class="task-card"
+         *ngFor="let t of todo"
+         draggable="true"
+         (dragstart)="onDragStart(t)"
+         (dragover)="$event.preventDefault()"
+         (drop)="onDrop(t)"
+         [class]="t.priority">
+      <span class="title">{{ t.title }}</span>
+
+      <div class="actions">
+        <span class="priority">{{ t.priority }}</span>
+        <button class="done-btn" (click)="complete(t)">✓</button>
+        <button class="remove" (click)="remove(t.id)">✖</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="task-section done-section" *ngIf="done.length">
+    <h3>Done</h3>
+
+    <div class="task-card done"
+         *ngFor="let t of done"
+         [class]="t.priority">
+      <span class="title">{{ t.title }}</span>
+
+      <div class="actions">
+        <button class="undo-btn" (click)="undo(t)">↺</button>
+      </div>
+    </div>
+  </div>
+
+</div>

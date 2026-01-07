@@ -1,0 +1,66 @@
+<div class="dashboard-page">
+
+  <header class="dashboard-header">
+    <div>
+      <h1>Personal Life Dashboard</h1>
+      <p>Dobrodošao, {{ user?.name }}</p>
+    </div>
+
+  </header>
+
+  <section class="module-grid">
+    <div class="module-card"
+         *ngFor="let m of modules"
+         [class.active]="activeModules.includes(m.id)"
+         (click)="toggle(m.id)">
+      <h3>{{ m.title }}</h3>
+      <p>{{ m.description }}</p>
+    </div>
+  </section>
+
+  <section class="windows">
+
+    <div class="window" *ngIf="activeModules.includes('habit')">
+      <div class="window-header">Habit Tracker</div>
+      <div class="window-body">
+        <app-habit></app-habit>
+      </div>
+    </div>
+
+    <div class="window" *ngIf="activeModules.includes('mood')">
+      <div class="window-header">Mood Tracker</div>
+      <div class="window-body">
+        <app-mood></app-mood>
+      </div>
+    </div>
+
+    <div class="window" *ngIf="activeModules.includes('sleep')">
+      <div class="window-header">Sleep Tracker</div>
+      <div class="window-body">
+        <app-sleep></app-sleep>
+      </div>
+    </div>
+
+    <div class="window" *ngIf="activeModules.includes('tasks')">
+      <div class="window-header">Tasks</div>
+      <div class="window-body">
+        <app-tasks></app-tasks>
+      </div>
+    </div>
+
+    <div class="window" *ngIf="activeModules.includes('water')">
+      <div class="window-header">Water Tracker</div>
+      <div class="window-body">
+        <app-water></app-water>
+      </div>
+    </div>
+
+    <div class="window" *ngIf="activeModules.includes('reflection')">
+      <div class="window-header">Reflection</div>
+      <div class="window-body">
+        <app-reflection></app-reflection>
+      </div>
+    </div>
+
+  </section>
+</div>

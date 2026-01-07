@@ -1,0 +1,31 @@
+<div class="sleep">
+
+  <div class="sleep-header">
+    <h2>Sleep</h2>
+    <span class="date">Danas</span>
+  </div>
+
+  <div class="hours-input">
+    <input type="number"
+           min="0"
+           max="12"
+           [(ngModel)]="hours"
+           (change)="save()" />
+    <span>h</span>
+  </div>
+
+  <div class="status" [class]="status">
+    {{ statusText }}
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress"
+         [style.width.%]="progress"
+         [style.background]="progressColor"></div>
+  </div>
+
+  <p class="range">
+    Optimalno: 7–9h
+  </p>
+
+</div>

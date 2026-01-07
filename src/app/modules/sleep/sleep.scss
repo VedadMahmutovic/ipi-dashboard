@@ -1,0 +1,87 @@
+.sleep {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sleep-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sleep-header h2 {
+  margin: 0;
+}
+
+.date {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.hours-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.hours-input input {
+  width: 70px;
+  padding: 0.3rem;
+  font-size: 1.5rem;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.status {
+  font-size: 0.9rem;
+}
+
+.status.bad {
+  color: #e74c3c;
+}
+
+.status.ok {
+  color: #f39c12;
+}
+
+.status.good {
+  color: #2ecc71;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #e5e5e5;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: #3498db;
+  transition: width 0.3s ease;
+}
+
+.hint {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.status.low {
+  color: #e74c3c;
+}
+
+.status.optimal {
+  color: #2ecc71;
+}
+
+.status.high {
+  color: #f1c40f;
+}
+
+.range {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}

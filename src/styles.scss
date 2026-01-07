@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/index';
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  background-attachment: fixed;
+}
+

@@ -1,0 +1,68 @@
+.reflection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.date-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.4rem;
+  max-width: 280px;
+}
+
+.day {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.day.active {
+  outline: 2px solid #000;
+}
+
+textarea {
+  min-height: 140px;
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.saved {
+  color: green;
+  font-size: 0.8rem;
+}
+
+.weekday {
+  font-size: 0.7rem;
+  text-align: center;
+  opacity: 0.6;
+}
+
+.day.empty {
+  pointer-events: none;
+}

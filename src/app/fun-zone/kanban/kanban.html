@@ -1,0 +1,70 @@
+<div #kanbanContent>
+
+  <h1>Kanban ploča</h1>
+
+  <div class="buttons">
+    <button (click)="openAdd()">Dodaj zadatak</button>
+    <button (click)="downloadPdf()">Preuzmi kao PDF</button>
+    <button (click)="clearBoard()">Očisti ploču</button>
+  </div>
+
+  <!-- ADD TASK MODAL -->
+  <div class="modal" *ngIf="showAddModal">
+    <div class="modal-content">
+      <h3>Dodaj zadatak</h3>
+
+      <input type="text"
+             [(ngModel)]="newTaskText"
+             placeholder="Vaš zadatak..." />
+
+      <div class="modal-buttons">
+        <button (click)="addTask()">Dodaj</button>
+        <button (click)="cancelAdd()">Poništi</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOARD -->
+  <div class="board">
+
+    <div class="column"
+         (dragover)="$event.preventDefault()"
+         (drop)="drop('todo')">
+      <h2>To Do</h2>
+
+      <div class="task"
+           *ngFor="let task of todo"
+           draggable="true"
+           (dragstart)="startDrag(task, 'todo')">
+        {{ task.text }}
+      </div>
+    </div>
+
+    <div class="column"
+         (dragover)="$event.preventDefault()"
+         (drop)="drop('progress')">
+      <h2>In Progress</h2>
+
+      <div class="task"
+           *ngFor="let task of progress"
+           draggable="true"
+           (dragstart)="startDrag(task, 'progress')">
+        {{ task.text }}
+      </div>
+    </div>
+
+    <div class="column"
+         (dragover)="$event.preventDefault()"
+         (drop)="drop('done')">
+      <h2>Done</h2>
+
+      <div class="task"
+           *ngFor="let task of done"
+           draggable="true"
+           (dragstart)="startDrag(task, 'done')">
+        {{ task.text }}
+      </div>
+    </div>
+
+  </div>
+</div>

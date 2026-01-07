@@ -1,0 +1,71 @@
+h1 {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.opis {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.kviz-forma {
+  width: 60%;
+  margin: auto;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.kviz-forma h3 {
+  margin-top: 25px;
+}
+
+label {
+  display: block;
+  margin: 5px 0;
+}
+
+button {
+  margin-top: 20px;
+  margin-right: 10px;
+  padding: 12px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  background: var(--vbb-bg);
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.rezultat {
+  margin-top: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.question {
+  padding: 15px;
+  border-radius: 6px;
+  margin-top: 20px;
+}
+
+.question.correct {
+  border: 2px solid #2ecc71;
+  background-color: #eafaf1;
+}
+
+.question.wrong {
+  border: 2px solid #e74c3c;
+  background-color: #fdecea;
+}
+
+.hint {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #2c3e50;
+}
